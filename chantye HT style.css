@@ -1,0 +1,84 @@
+/* Konfigirasyon Jeneral */
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f7f6;
+    color: #333;
+}
+
+/* Meni Navigasyon (Navbar) */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #ffffff;
+    padding: 15px 30px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.navbar .logo {
+    font-size: 24px;
+    font-weight: bold;
+    color: #0056b3; /* Tit la ble */
+}
+
+.nav-links {
+    list-style: none; /* Nou retire pwen nwa yo pou li pi modèn */
+    display: flex;
+    margin: 0;
+    padding: 0;
+}
+
+.nav-links li {
+    margin-left: 20px;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: #555;
+    font-weight: bold;
+}
+
+/* Seksyon Prensipal (Hero) */
+.hero {
+    text-align: center; /* Santre tèks la */
+    padding: 50px 20px;
+}
+
+.hero h1 {
+    color: #0056b3; /* Tit prensipal la ble */
+    font-size: 2.5rem;
+}
+
+.hero p {
+    font-size: 1.2rem;
+    color: #666;
+}
+
+/* Santre Imaj la selon konsèy la */
+.hero-img {
+    display: block;
+    margin: 20px auto;
+    border-radius: 12px;
+    max-width: 100%;
+    height: auto;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+/* Bèl Bouton Vèt la */
+.btn-antre {
+    background-color: #28a745; /* Bouton an vèt */
+    color: white;
+    padding: 12px 25px;
+    border: none;
+    border-radius: 8px; /* Kwen won */
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.btn-antre:hover {
+    background-color: #218838; /* Li vin pi fonse lè w pase sou li */
+}

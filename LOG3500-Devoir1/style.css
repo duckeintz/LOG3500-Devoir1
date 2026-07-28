@@ -1,0 +1,115 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: #ffffff;
+  color: #333333;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: 20px;
+}
+
+/* Alignement en 2 colonnes (Flexbox) */
+.container {
+  display: flex;
+  flex-direction: row;
+  max-width: 1000px;
+  width: 100%;
+  gap: 50px;
+  align-items: center;
+}
+
+.form-section {
+  flex: 1;
+}
+
+.illustration-section {
+  flex: 1;
+  text-align: center;
+}
+
+.illustration-section img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Style des textes */
+h1 {
+  font-size: 2rem;
+  margin-bottom: 10px;
+}
+
+p {
+  color: #777777;
+  margin-bottom: 30px;
+}
+
+/* Style du formulaire */
+.form-group {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
+}
+
+.form-group label {
+  font-size: 0.85rem;
+  color: #777777;
+  margin-bottom: 5px;
+}
+
+/* Champs avec uniquement une bordure en bas */
+.form-group input[type="text"],
+.form-group input[type="email"] {
+  border: none;
+  border-bottom: 1px solid #ccc;
+  padding: 8px 0;
+  outline: none;
+  font-size: 1rem;
+}
+
+/* Couleur bleue pour le champ actif */
+.form-group.active-field label {
+  color: #70b6f6;
+}
+
+.form-group.active-field input {
+  border-bottom: 2px solid #70b6f6;
+}
+
+/* Case à cocher */
+.checkbox-group {
+  flex-direction: row;
+  align-items: center;
+  gap: 10px;
+}
+
+.checkbox-group a {
+  color: #70b6f6;
+  text-decoration: none;
+}
+
+/* Bouton arrondi style pilule */
+.btn-submit {
+  background-color: #70b6f6;
+  color: white;
+  border: none;
+  padding: 12px 30px;
+  border-radius: 20px;
+  font-weight: bold;
+  cursor: pointer;
+  box-shadow: 0 4px 10px rgba(112, 182, 246, 0.3);
+  margin-top: 10px;
+}
+
+/* Adapte l'écran pour les téléphones (Responsive) */
+@media (max-width: 768px) {
+  .container {
+    flex-direction: column-reverse;
+  }
+}

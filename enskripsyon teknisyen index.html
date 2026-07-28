@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="ht">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enskripsyon Pwofesyonèl - Chantye HT</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Script pou jenere Kòd QR otomatikman -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+    <style>
+        .register-tech-container {
+            max-width: 500px;
+            margin: 40px auto;
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+        /* Stil pou nouvo seleksyon yo ak fòm nan */
+        .form-group select, .form-group input {
+            width: 100%;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            font-size: 14px;
+            box-sizing: border-box;
+        }
+        /* Stil pou Badge la */
+        .badge-preview {
+            display: none;
+            width: 320px;
+            background: linear-gradient(135deg, #0056b3 0%, #002d62 100%);
+            color: white;
+            border-radius: 15px;
+            padding: 20px;
+            margin: 30px auto;
+            text-align: center;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.25);
+            border: 3px solid #28a745;
+            position: relative;
+            overflow: hidden;
+        }
+        .badge-header {
+            font-size: 18px;
+            font-weight: 800;
+            letter-spacing: 1px;
+            margin-bottom: 15px;
+            border-bottom: 1px solid rgba(255,255,255,0.2);
+            padding-bottom: 5px;
+        }
+        .badge-img-box {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            border: 3px solid #28a745;
+            margin: 0 auto 10px auto;
+            object-fit: cover;
+            background-color: #eee;
+        }
+        .badge-name {
+            font-size: 20px;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        .badge-metye {
+            background-color: #28a745;
+            color: white;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: bold;
+            display: inline-block;
+            margin-bottom: 15px;
+        }
+        .badge-qr-container {
+            background: white;
+            padding: 10px;
+            width: 110px;
+            height: 110px;
+            margin: 10px auto;
+            border-radius: 8px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .badge-footer {
+            font-size: 11px;
+            opacity: 0.7;
+            margin-top: 15px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="register-tech-container">
+        <!-- FÒM ENSRIPSYON AN ANREJISTRE -->
+        <div id="form-block">
+            <h2 style="color: #0056b3; margin-bottom: 20px; text-align: center;">Anrejistre kòm Pwofesyonèl</h2>
+            <form id="techForm" onsubmit="jenereBadge(event)">
+                <div class="form-group" style="margin-bottom: 15px;">
+                    <label style="display:block; margin-bottom:5px; font-weight:bold;">Non ak Siyen</label>
+                    <input type="text" id="tech-name" placeholder="Eg: Jean Dupont" required>
+                </div>
+
+                <div class="form-group" style="margin-bottom: 15px;">
+                    <label style="display:block; margin-bottom:5px; font-weight:bold;">Sèks</label>
+                    <select id="tech-seks" required>
+                        <option value="">-- Chwazi Sèks ou --</option>
+                        <option value="Gason">Gason</option>
+                        <option value="Fi">Fi</option>
+                    </select>
+                </div>
+
+                <div class="form-group" style="margin-bottom: 15px;">
+                    <label style="display:block; margin-bottom:5px; font-weight:bold;">NIF / CIN</label>
+                    <input type="text" id="tech-nif" placeholder="Eg: 000-000-000-0" required>
+                </div>
+
+                <div class="form-group" style="margin-bottom: 15px;">
+                    <label style="display:block; margin-bottom:5px; font-weight:bold;">Telefòn</label>
+                    <input type="tel" id="tech-phone" placeholder="Eg: +509 3700-0000" required>
+                </div>
+
+                <div class="form-group" style="margin-bottom: 15px;">
+                    <label style="display:block; margin-bottom:5px; font-weight:bold;">Chwazi Metye w</label>
+                    <select id="tech-metye" required>
+                        <option value="">-- Chwazi Metye a --</option>
+                        <option value="Mekanisyen">Mekanisyen</option>
+                        <option value="Elektrisyen">Elektrisyen</option>
+                        <option value="Plonbye">Plonbye</option>
+                        <option value="Teknisyen Klima">Teknisyen Klima</option>
+                        <option value="Bòs Soudi">Bòs Soudi</option>
+                        <option value="Teknisyen Solè">Teknisyen Solè</option>
+                    </select>
+                </div>
+
+                <div class="form-group" style="margin-bottom: 15px;">
+                    <label style="display:block; margin-bottom:5px; font-weight:bold;">Depatman kote w travay</label>
+                    <select id="tech-depatman" required>
+                        <option value="">-- Chwazi Depatman an --</option>
+                        <option value="Lwès">Lwès</option>
+                        <option value="Nò">Nò</option>
+                        <option value="Artibonit">Artibonit</option>
+                        <option value="Sid">Sid</option>
+                    </select>
+                </div>
+
+                <div class="form-group" style="margin-bottom: 15px;">
+                    <label style="display:block; margin-bottom:5px; font-weight:bold;">Vil</label>
+                    <input type="text" id="tech-vil" placeholder="Eg: Pòtoprens, Okap, Senmak..." required>
+                </div>
+
+                <div class="form-group" style="margin-bottom: 20px;">
+                    <label style="display:block; margin-bottom:5px; font-weight:bold;">Foto Pwofil (Kamera oswa Galeri)</label>
+                    <!-- "accept='image/*' telemiltimedya fòse aparèy la ouvri kamera a oswa galeri a otomatikman -->
+                    <input type="file" id="tech-file" accept="image/*" required style="border:none; padding:5px 0;">
+                </div>
+                
+                <button type="submit" class="btn-submit" style="background-color: #28a745; width:100%; padding:12px; border:none; color:white; border-radius:5px; font-weight:bold; font-size:16px; cursor:pointer;">Jenere Badge & Kòd QR mwen</button>
+            </form>
+        </div>
+
+        <!-- BADGE K AP PARÈT APRE LI FIN ENSRI -->
+        <div id="badge-block" class="badge-preview">
+            <div class="badge-header">CHANTYE HT • PWOFESYONÈL</div>
+            <img id="view-photo" src="" alt="Foto Pwofil" class="badge-img-box">
+            <div id="view-name" class="badge-name">---</div>
+            <div id="view-metye" class="badge-metye">---</div>
+            
+            <div style="font-size: 14px; margin-bottom: 3px;">📍 <span id="view-vil">---</span>, <span id="view-depatman" style="font-weight:bold;">---</span></div>
+            <div style="font-size: 14px; margin-bottom: 3px;">📞 Tel: <span id="view-phone" style="font-weight:bold;">---</span></div>
+            <div style="font-size: 13px; margin-bottom: 3px; opacity: 0.9;">Sèks: <span id="view-seks">---</span></div>
+            <div style="font-size: 12px; margin-bottom: 10px; opacity: 0.8;">ID: <span id="view-nif">---</span></div>
+            
+            <!-- ZÒN KÒD QR -->
+            <div class="badge-qr-container">
+                <div id="qrcode"></div>
+            </div>
+            
+            <div class="badge-footer">Skane kòd sa a pou wè pwofil mwen nèt sou Chantye HT</div>
+            <button type="button" onclick="window.print()" style="margin-top: 15px; padding: 7px 12px; background: white; color: #002d62; border: none; border-radius: 5px; font-weight: bold; cursor: pointer;">🖨️ Enprime Badge la</button>
+        </div>
+    </div>
+
+        <script>
+        function jenereBadge(event) {
+            event.preventDefault(); // Anpeche paj la rafrechi
+            
+            // 1. Rekipere enfòmasyon tèks yo
+            let name = document.getElementById('tech-name').value;
+            let seks = document.getElementById('tech-seks').value;
+            let nif = document.getElementById('tech-nif').value;
+            let phone = document.getElementById('tech-phone').value;
+            let metye = document.getElementById('tech-metye').value;
+            let depatman = document.getElementById('tech-depatman').value;
+            let vil = document.getElementById('tech-vil').value;
+
+            // 2. Sove enfòmasyon sa yo nan memwa navigatè a (LocalStorage)
+            localStorage.setItem('tech_name', name);
+            localStorage.setItem('tech_seks', seks);
+            localStorage.setItem('tech_nif', nif);
+            localStorage.setItem('tech_phone', phone);
+            localStorage.setItem('tech_metye', metye);
+            localStorage.setItem('tech_depatman', depatman);
+            localStorage.setItem('tech_vil', vil);
+
+            // 3. Mete enfòmasyon yo nan Badge la pou vizyèl
+            document.getElementById('view-name').innerText = name;
+            document.getElementById('view-seks').innerText = seks;
+            document.getElementById('view-nif').innerText = nif;
+            document.getElementById('view-phone').innerText = phone;
+            document.getElementById('view-metye').innerText = metye;
+            document.getElementById('view-depatman').innerText = depatman;
+            document.getElementById('view-vil').innerText = vil;
+
+            // 4. Lekti ak afichaj imaj la (epi sove l tou)
+            let fileInput = document.getElementById('tech-file');
+            if (fileInput.files && fileInput.files[0]) {
+                let reader = new FileReader();
+                reader.onload = function(e) {
+                    document.getElementById('view-photo').src = e.target.result;
+                    localStorage.setItem('tech_photo', e.target.result); // Sove foto a tou
+                }
+                reader.readAsDataURL(fileInput.files[0]);
+            }
+
+            // Efase ansyen QR si te genyen
+            document.getElementById('qrcode').innerHTML = "";
+
+            // 5. Kreye kòd QR la pou l mennen dirèkteman sou fichye profil.html la
+            let lyenProfil = window.location.href.replace('enskripsyon-teknisyen.html', 'profil.html');
+            
+            new QRCode(document.getElementById("qrcode"), {
+                text: lyenProfil,
+                width: 100,
+                height: 100,
+                colorDark : "#000000",
+                colorLight : "#ffffff",
+                correctLevel : QRCode.CorrectLevel.H
+            });
+
+            // Kache fòm nan, afiche Badge la
+            document.getElementById('form-block').style.display = 'none';
+            document.getElementById('badge-block').style.display = 'block';
+        }
+    </script>
+
+</body>
+</html>
